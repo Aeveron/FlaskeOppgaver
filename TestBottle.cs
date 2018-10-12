@@ -24,19 +24,21 @@ namespace FlaskeOppgaver
             Content = Math.Min(Content + volume, Capacity);
         }
 
-        public int FillToTop(TestBottle bottle1, TestBottle bottle2)
-        {
-            var volumeFilled = Capacity - Content;
-            Content = Capacity;
-            return volumeFilled;
-
-        }
-
         public int Empty()
         {
             var content = Content;
             Content = 0;
             return content;
         }
+
+        public void FillToTop(TestBottle bottle)
+        {
+            var fullBottle = Capacity - Content;
+            var realFillVolume = Math.Min(fullBottle, bottle.Content);
+            Content += realFillVolume;
+            bottle.Content -= realFillVolume;
+
+        }
+
     }
 }
